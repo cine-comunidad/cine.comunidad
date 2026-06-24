@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine Comunidad · Inicio</title>
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            background: #ffffff;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #1a1a1a;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+
+        /* ----- STAR CURSOR ----- */
+        #star-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.8rem;
+            color: #6698f8;
+            opacity: 0.7;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease;
+            text-shadow: 0 0 15px rgba(102, 152, 248, 0.3);
+        }
+
+        /* ----- CONTAINER ----- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ----- NAVIGATION ----- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0.5rem 0 2rem 0;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 3rem;
+        }
+
+        .logo a {
+            display: block;
+        }
+
+        .logo img {
+            max-height: 80px;  /* BIGGER LOGO */
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-links a:hover {
+            color: #6698f8;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #6698f8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links .active {
+            color: #6698f8;
+        }
+
+        .nav-links .active::after {
+            width: 100%;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1.5px solid #6698f8;
+            color: #6698f8;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+        }
+
+        .lang-btn:hover {
+            background: #6698f8;
+            color: white;
+        }
+
+        /* ----- HERO / MAIN STATEMENT (HOME) ----- */
+        .hero {
+            padding: 1rem 0 4rem 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            background: #f0ebe6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image .main-img-placeholder {
+            width: 100%;
+            height: 400px;
+            background: #f0ebe6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #ccc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image .main-img-placeholder::before {
+            content: '🎬';
+            font-size: 6rem;
+            opacity: 0.4;
+        }
+
+        .hero-image .main-img-placeholder .film-grain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, 
+                rgba(0,0,0,0.02) 0px, 
+                rgba(0,0,0,0.02) 2px, 
+                transparent 2px, 
+                transparent 4px);
+            pointer-events: none;
+        }
+
+        .hero-text {
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #1a1a1a;
+            padding: 0 1rem;
+        }
+
+        .hero-text p {
+            margin-bottom: 2rem;
+        }
+
+        .hero-text .highlight {
+            color: #6698f8;
+            font-weight: 600;
+        }
+
+        .hero-text .craft-divider {
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #e7bdcd;
+            margin: 1.5rem 0;
+            letter-spacing: 0.5rem;
+        }
+
+        /* ----- FOOTER (SAME ON ALL PAGES) ----- */
+        .footer {
+            padding: 3rem 0 1.5rem 0;
+            border-top: 2px solid #f0f0f0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: #6698f8;
+        }
+
+        .footer-links a .icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        .footer-copy .craft-heart {
+            color: #e7bdcd;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero-text {
+                font-size: 1rem;
+                padding: 0;
+            }
+
+            .hero-image .main-img-placeholder {
+                height: 250px;
+            }
+
+            .logo img {
+                max-height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                font-size: 0.8rem;
+                gap: 0.8rem;
+            }
+
+            .hero-image .main-img-placeholder {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STAR CURSOR -->
+    <div id="star-cursor">✧</div>
+
+    <div class="container">
+
+        <!-- NAVIGATION -->
+        <nav class="navbar">
+            <div class="logo">
+                <!-- LOGO IS NOW A LINK TO HOME -->
+                <a href="index.html">
+                    <!-- REPLACE "logo-placeholder.png" WITH YOUR ACTUAL LOGO FILENAME -->
+                    <img src="logo.png" alt="Cine Comunidad">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="archivo.html">Archivo</a>
+                <a href="eventos.html">Próximos Eventos</a>
+                <a href="textos.html">Textos</a>
+                <a href="nosotras.html">Nosotras</a>
+                <a href="index-en.html" class="lang-btn">EN</a>
+            </div>
+        </nav>
+
+        <!-- HERO: BIG IMAGE + TEXT -->
+        <section class="hero">
+            <!-- BIG IMAGE AT TOP -->
+            <div class="hero-image">
+                <div class="main-img-placeholder">
+                    <div class="film-grain"></div>
+                    <!-- REPLACE THIS PLACEHOLDER WITH YOUR OWN IMAGE -->
+                    <!-- Just change the content inside this div or add an <img> tag -->
+                </div>
+            </div>
+
+            <!-- TEXT BELOW -->
+            <div class="hero-text">
+                <p>
+                    <span class="highlight">CineComunidad</span> es un cineclub itinerante, independiente y emergente que apuesta por la colaboración interdisciplinaria para crear espacios de encuentro, diálogo y comunidad en torno al cine.
+                </p>
+
+                <span class="craft-divider">✧ ✧ ✧</span>
+
+                <p>
+                    <span class="highlight">El cine nos (re)une</span><br>
+                    El cine no sólo se mira, ni tampoco se mira solx: el cine se comparte. Cada función es una oportunidad para (re)unirnos, (re)conocernos y conectar desde experiencias diversas.
+                </p>
+
+                <p>
+                    <span class="highlight">El cine nos (con)mueve</span><br>
+                    El espacio afecta nuestra experiencia de visualización. Por eso, CineComunidad es un proyecto en movimiento: habita distintos entornos para que el cine entre en diálogo con su lugar de exhibición y nos permita ver desde otras posiciones.
+                </p>
+
+                <p>
+                    <span class="highlight">El cine nos (ex)tiende la mirada</span><br>
+                    Una comunidad para cine poco común. Proyectamos filmes que desbordan lo habitual para ampliar nuestro horizonte cinematográfico y acercarnos a problemáticas que interpelan nuestras realidades.
+                </p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://instagram.com/cine.comunidad" target="_blank">
+                    <!-- INSTAGRAM SVG ICON (not an emoji) -->
+                    <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                    @cine.comunidad
+                </a>
+                <a href="mailto:somos.cine.comunidad@gmail.com">
+                    <!-- EMAIL SVG ICON -->
+                    <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+                        <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+                    </svg>
+                    somos.cine.comunidad@gmail.com
+                </a>
+            </div>
+            <div class="footer-copy">
+                <span class="craft-heart">✧</span> Cine Comunidad · hecho con mucho amor <span class="craft-heart">♥</span> <span class="craft-heart">✧</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- STAR CURSOR SCRIPT -->
+    <script>
+        const star = document.getElementById('star-cursor');
+        let mouseX = 0, mouseY = 0;
+        let starX = 0, starY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateStar() {
+            starX += (mouseX - starX) * 0.15;
+            starY += (mouseY - starY) * 0.15;
+            star.style.left = starX + 'px';
+            star.style.top = starY + 'px';
+            requestAnimationFrame(animateStar);
+        }
+
+        animateStar();
+
+        if ('ontouchstart' in window) {
+            star.style.display = 'none';
+            document.querySelectorAll('*').forEach(el => el.style.cursor = 'auto');
+        }
+    </script>
+
+</body>
+</html>
