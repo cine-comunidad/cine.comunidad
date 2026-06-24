@@ -71,44 +71,11 @@
             margin-bottom: 2rem;
         }
 
-        .logo a {
-            display: block;
-        }
-
-        .logo img {
-            max-height: 80px;
-            width: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.8rem;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #1a1a1a;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        .nav-links a:hover {
+        .nav-right a:hover {
             color: #6698f8;
         }
 
-        .nav-links a::after {
+        .nav-right a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -119,15 +86,15 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-right a:hover::after {
             width: 100%;
         }
 
-        .nav-links .active {
+        .nav-right .active {
             color: #6698f8;
         }
 
-        .nav-links .active::after {
+        .nav-right .active::after {
             width: 100%;
         }
 
@@ -305,8 +272,15 @@
                     <img src="logo.png" alt="Cine Comunidad">
                 </a>
             </div>
-            <div class="nav-links">
-                <a href="index.html" class="active">⋆˚࿔ inicio</a>
+            <div class="nav-left">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo-placeholder.png" alt="Cine Comunidad">
+                    </a>
+                </div>
+                <a href="index.html" class="home-link">⋆˚࿔ inicio</a>
+            </div>
+            <div class="nav-right">
                 <a href="archivo.html">࿔ archivo</a>
                 <a href="eventos.html">࿔ próximos eventos</a>
                 <a href="textos.html">࿔ textos</a>
