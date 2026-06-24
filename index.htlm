@@ -675,7 +675,7 @@
         <nav class="navbar">
             <div class="logo">
                 <!-- REPLACE "logo-placeholder.png" WITH YOUR ACTUAL LOGO FILENAME -->
-                <img src="logo-placeholder.png" alt="Cine Comunidad">
+                <img src="logo.png" alt="Cine Comunidad">
             </div>
             <div class="nav-links">
                 <a href="#archivo">Archivo</a>
