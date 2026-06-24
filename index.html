@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project · GitHub layout</title>
+  <!-- Font Awesome for icons (optional but nice) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- global reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f8fafc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #0b1a2e;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+      overflow: hidden;
+      padding: 2rem 2.5rem;
+    }
+
+    /* ----- header / nav ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e9edf2;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b1a2e, #1f3a5f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo i {
+      background: none;
+      -webkit-text-fill-color: #2563eb;
+      margin-right: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid #d0d8e3;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: all 0.2s;
+      color: #1e293b;
+    }
+
+    .btn-ghost:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 500;
+      border: none;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      color: white !important;
+    }
+
+    /* ----- hero section ----- */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 1.5rem 0 2.5rem 0;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      max-width: 800px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(145deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #334155;
+      max-width: 650px;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .hero-actions .btn-primary {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+    }
+
+    .hero-actions .btn-ghost {
+      padding: 0.75rem 2rem;
+    }
+
+    .badge {
+      background: #eef2ff;
+      color: #2563eb;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    /* ----- stats / meta ----- */
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: #f8fafc;
+      padding: 1.8rem 2rem;
+      border-radius: 2rem;
+      margin: 2rem 0 2.5rem 0;
+      border: 1px solid #eef2f6;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .stat-item i {
+      font-size: 1.6rem;
+      color: #2563eb;
+      width: 2.2rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .stat-label {
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    /* ----- main layout: two columns (project + sidebar) ----- */
+    .project-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2.5rem;
+      margin: 2rem 0 3rem 0;
+    }
+
+    @media (max-width: 820px) {
+      .project-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .container {
+        padding: 1.5rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .stats-grid {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .nav-links {
+        justify-content: space-between;
+      }
+    }
+
+    /* ----- main content (project description) ----- */
+    .project-description h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .project-description p {
+      color: #1e293b;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .feature-list li i {
+      color: #2563eb;
+      font-size: 1.2rem;
+      width: 1.6rem;
+      margin-top: 0.1rem;
+    }
+
+    .code-snippet {
+      background: #0b1a2e;
+      color: #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 1.2rem;
+      font-family: 'Menlo', 'Cascadia Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1.8rem 0;
+    }
+
+    .code-snippet span {
+      color: #a5b4fc;
+    }
+
+    /* ----- sidebar (team / meta) ----- */
+    .sidebar-card {
+      background: #fafcff;
+      border: 1px solid #e9edf2;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.8rem 2rem;
+    }
+
+    .sidebar-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .team-member {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      background: #dbeafe;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .member-info {
+      flex: 1;
+    }
+
+    .member-info .name {
+      font-weight: 600;
+    }
+
+    .member-info .role {
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .badge-list .badge {
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+    }
+
+    .divider {
+      border: 0;
+      height: 1px;
+      background: #e9edf2;
+      margin: 1.5rem 0;
+    }
+
+    .repo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #f1f5f9;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      color: #0b1a2e;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .repo-link i {
+      color: #2563eb;
+    }
+
+    .repo-link:hover {
+      background: #e2e8f0;
+    }
+
+    /* ----- footer ----- */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e9edf2;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: #334155;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #2563eb;
+    }
+
+    /* misc */
+    .icon-text {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- navigation -->
+    <header class="navbar">
+      <div class="logo">
+        <i class="fas fa-code"></i> ProjectName
+      </div>
+      <div class="nav-links">
+        <a href="#">Docs</a>
+        <a href="#">Examples</a>
+        <a href="#" class="btn-ghost"><i class="fas fa-star"></i> Star</a>
+        <a href="#" class="btn-primary"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </header>
+
+    <!-- hero -->
+    <section class="hero">
+      <span class="badge"><i class="fas fa-rocket"></i> v2.0 · open source</span>
+      <h1>Build your next <span>project</span> with confidence</h1>
+      <p>Clean, modular, and ready for GitHub Pages. This layout gives you a solid foundation for your project’s home.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary"><i class="fab fa-github"></i> View on GitHub</a>
+        <a href="#" class="btn-ghost"><i class="fas fa-book-open"></i> Read the docs</a>
+      </div>
+    </section>
+
+    <!-- stats -->
+    <div class="stats-grid">
+      <div class="stat-item">
+        <i class="fas fa-code-branch"></i>
+        <div><span class="stat-number">12</span> <span class="stat-label">releases</span></div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-users"></i>
+        <div><span class="stat-number">8</span> <span class="stat-label">contributors</span></div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <div><span class="stat-number">4.2k</span> <span class="stat-label">deployments</span></div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-star"></i>
+        <div><span class="stat-number">1.3k</span> <span class="stat-label">stars</span></div>
+      </div>
+    </div>
+
+    <!-- main two‑column layout -->
+    <div class="project-layout">
+
+      <!-- left column: project description -->
+      <main class="project-description">
+        <h2>About the project</h2>
+        <p>
+          This is a modern, responsive layout designed for your open‑source project.
+          It includes a hero section, stats, project details, and a team sidebar — 
+          everything you need to present your work clearly.
+        </p>
+        <p>
+          Host it on <strong>GitHub Pages</strong> in minutes. Just copy the HTML, 
+          customize the content, and push to your repo.
+        </p>
+
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Fully responsive grid layout</li>
+          <li><i class="fas fa-check-circle"></i> Clean typography &amp; spacing</li>
+          <li><i class="fas fa-check-circle"></i> Ready for GitHub Pages hosting</li>
+          <li><i class="fas fa-check-circle"></i> Customizable colors and icons</li>
+        </ul>
+
+        <!-- code snippet (just for style) -->
+        <div class="code-snippet">
+          <span>git</span> clone https://github.com/yourname/project.git<br>
+          <span>cd</span> project &amp;&amp; <span>npm</span> install<br>
+          <span>npm</span> run build &amp;&amp; <span>npm</span> start
+        </div>
+
+        <p style="margin-top: 0.5rem;">
+          <i class="fas fa-arrow-right" style="color: #2563eb;"></i> 
+          Check the <a href="#" style="color: #2563eb; text-decoration: none; font-weight: 500;">installation guide</a> 
+          to get started.
+        </p>
+      </main>
+
+      <!-- right column: sidebar (team / repo info) -->
+      <aside class="sidebar-card">
+        <h3><i class="fas fa-user-astronaut"></i> Core team</h3>
+
+        <div class="team-member">
+          <div class="avatar">JD</div>
+          <div class="member-info">
+            <div class="name">Jane Doe</div>
+            <div class="role">Project lead · design</div>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <div class="avatar">MC</div>
+          <div class="member-info">
+            <div class="name">Mark Chen</div>
+            <div class="role">Senior engineer</div>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <div class="avatar">AS</div>
+          <div class="member-info">
+            <div class="name">Alex S.</div>
+            <div class="role">DevOps &amp; docs</div>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <h3><i class="fas fa-tag"></i> Tech stack</h3>
+        <div class="badge-list">
+          <span class="badge">React</span>
+          <span class="badge">Tailwind</span>
+          <span class="badge">Node.js</span>
+          <span class="badge">GitHub Actions</span>
+          <span class="badge">Vite</span>
+        </div>
+
+        <hr class="divider">
+
+        <a href="#" class="repo-link">
+          <i class="fab fa-github fa-lg"></i> 
+          <span>github.com/yourname/project</span>
+          <i class="fas fa-external-link-alt" style="margin-left: auto; opacity: 0.7;"></i>
+        </a>
+
+        <div style="margin-top: 1.2rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span style="background: #e9edf2; padding: 0.2rem 1rem; border-radius: 40px; font-size: 0.8rem;">
+            <i class="fas fa-circle" style="color: #22c55e; font-size: 0.6rem;"></i> active
+          </span>
+          <span style="background: #e9edf2; padding: 0.2rem 1rem; border-radius: 40px; font-size: 0.8rem;">
+            <i class="fas fa-license"></i> MIT
+          </span>
+        </div>
+      </aside>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer">
+      <span>© 2026 <strong>ProjectName</strong> — built for GitHub Pages</span>
+      <div class="footer-links">
+        <a href="#"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </footer>
+
+  </div> <!-- /container -->
+</body>
+</html>
