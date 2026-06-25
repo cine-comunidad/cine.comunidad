@@ -10,7 +10,7 @@
     <style>
         /* ----- RESET & BASE ----- */
         * {
-            margin: 0.2;
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
             cursor: none;
@@ -43,9 +43,6 @@
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-
-        /* ----- FULL-WIDTH NAVIGATION (inside container) ----- */
-        /* Navigation stays inside container for readability */
 
         /* ----- NAVIGATION ----- */
         .navbar {
@@ -165,7 +162,7 @@
             color: white;
         }
 
-        /* ----- SECTION TITLE (inside container) ----- */
+        /* ----- SECTION TITLE ----- */
         .section-title {
             font-size: 2.2rem;
             font-weight: 400;
@@ -178,62 +175,44 @@
             text-transform: lowercase;
         }
 
-        /* ----- FULL-WIDTH COLLAGE GRID (NO MARGINS) ----- */
+        /* ----- TRULY RANDOM FLOATING COLLAGE ----- */
         .collage-grid {
-            columns: 4 240px;
-            column-gap: 0.8rem;
-            margin: 2rem 0 3rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 0.8rem;
+            margin: 2rem 1.5rem 3rem 1.5rem; /* small left-right margin */
             padding: 0;
-            width: 100%;
-            max-width: 100vw;
+            width: auto;
         }
 
         .collage-item {
-            display: inline-block;
-            margin-bottom: 0.8rem;
-            width: 100%;
+            display: block;
             text-decoration: none;
             color: inherit;
-            break-inside: avoid;
-            page-break-inside: avoid;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            flex-shrink: 0;
+            border-radius: 3px;
+            overflow: hidden;
         }
 
         .collage-item:hover {
-            transform: translateY(-4px);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
 
         .collage-item .project-image {
             width: 100%;
             background: #f0ebe6;
-            border-radius: 3px;
             overflow: hidden;
-            margin-bottom: 0.4rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #ccc;
             position: relative;
+            border-radius: 3px;
         }
-
-        /* ----- EXAGGERATED RANDOM ASPECT RATIOS ----- */
-        .collage-item:nth-child(1) .project-image { aspect-ratio: 4 / 7; }    /* very tall */
-        .collage-item:nth-child(2) .project-image { aspect-ratio: 7 / 4; }    /* very wide */
-        .collage-item:nth-child(3) .project-image { aspect-ratio: 2 / 3; }    /* tall */
-        .collage-item:nth-child(4) .project-image { aspect-ratio: 8 / 5; }    /* wide */
-        .collage-item:nth-child(5) .project-image { aspect-ratio: 3 / 6; }    /* extremely tall */
-        .collage-item:nth-child(6) .project-image { aspect-ratio: 6 / 3; }    /* extremely wide */
-        .collage-item:nth-child(7) .project-image { aspect-ratio: 5 / 8; }    /* very tall */
-        .collage-item:nth-child(8) .project-image { aspect-ratio: 9 / 5; }    /* very wide */
-        .collage-item:nth-child(9) .project-image { aspect-ratio: 3 / 5; }    /* tall */
-        .collage-item:nth-child(10) .project-image { aspect-ratio: 5 / 3; }   /* wide */
-        .collage-item:nth-child(11) .project-image { aspect-ratio: 4 / 9; }   /* extremely tall */
-        .collage-item:nth-child(12) .project-image { aspect-ratio: 9 / 4; }   /* extremely wide */
-        .collage-item:nth-child(13) .project-image { aspect-ratio: 2 / 5; }   /* very tall */
-        .collage-item:nth-child(14) .project-image { aspect-ratio: 6 / 5; }   /* slightly wide */
-        .collage-item:nth-child(15) .project-image { aspect-ratio: 5 / 7; }   /* tall */
-        .collage-item:nth-child(16) .project-image { aspect-ratio: 7 / 5; }   /* wide */
 
         .collage-item .project-image img {
             width: 100%;
@@ -248,19 +227,18 @@
         }
 
         .collage-item .project-description {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #555;
-            line-height: 1.4;
+            line-height: 1.3;
             font-family: 'Courier Prime', monospace;
-            padding: 0 0.2rem;
+            padding: 0.3rem 0.2rem 0;
         }
 
         .collage-item .project-link {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #6698f8;
             text-decoration: none;
             font-weight: 500;
-            margin-top: 0.1rem;
             border-bottom: 1px solid transparent;
             transition: border-color 0.3s ease;
             display: inline-block;
@@ -271,7 +249,44 @@
             border-bottom-color: #6698f8;
         }
 
-        /* ----- FOOTER (inside container) ----- */
+        /* ----- EACH ITEM HAS A RANDOM SIZE AND POSITION ----- */
+        /* WIDTHS */
+        .collage-item:nth-child(1) { width: 18%; }
+        .collage-item:nth-child(2) { width: 28%; }
+        .collage-item:nth-child(3) { width: 22%; }
+        .collage-item:nth-child(4) { width: 32%; }
+        .collage-item:nth-child(5) { width: 15%; }
+        .collage-item:nth-child(6) { width: 35%; }
+        .collage-item:nth-child(7) { width: 20%; }
+        .collage-item:nth-child(8) { width: 30%; }
+        .collage-item:nth-child(9) { width: 25%; }
+        .collage-item:nth-child(10) { width: 28%; }
+        .collage-item:nth-child(11) { width: 16%; }
+        .collage-item:nth-child(12) { width: 32%; }
+        .collage-item:nth-child(13) { width: 22%; }
+        .collage-item:nth-child(14) { width: 26%; }
+        .collage-item:nth-child(15) { width: 19%; }
+        .collage-item:nth-child(16) { width: 30%; }
+
+        /* HEIGHTS (via aspect-ratio) - EXAGGERATED */
+        .collage-item:nth-child(1) .project-image { aspect-ratio: 3 / 8; }    /* super tall */
+        .collage-item:nth-child(2) .project-image { aspect-ratio: 8 / 3; }    /* super wide */
+        .collage-item:nth-child(3) .project-image { aspect-ratio: 4 / 7; }    /* very tall */
+        .collage-item:nth-child(4) .project-image { aspect-ratio: 7 / 4; }    /* very wide */
+        .collage-item:nth-child(5) .project-image { aspect-ratio: 2 / 6; }    /* extremely tall */
+        .collage-item:nth-child(6) .project-image { aspect-ratio: 6 / 2; }    /* extremely wide */
+        .collage-item:nth-child(7) .project-image { aspect-ratio: 5 / 9; }    /* very tall */
+        .collage-item:nth-child(8) .project-image { aspect-ratio: 9 / 5; }    /* very wide */
+        .collage-item:nth-child(9) .project-image { aspect-ratio: 3 / 5; }    /* tall */
+        .collage-item:nth-child(10) .project-image { aspect-ratio: 5 / 3; }   /* wide */
+        .collage-item:nth-child(11) .project-image { aspect-ratio: 2 / 7; }   /* extremely tall */
+        .collage-item:nth-child(12) .project-image { aspect-ratio: 7 / 2; }   /* extremely wide */
+        .collage-item:nth-child(13) .project-image { aspect-ratio: 4 / 9; }   /* very tall */
+        .collage-item:nth-child(14) .project-image { aspect-ratio: 9 / 4; }   /* very wide */
+        .collage-item:nth-child(15) .project-image { aspect-ratio: 5 / 8; }   /* tall */
+        .collage-item:nth-child(16) .project-image { aspect-ratio: 8 / 5; }   /* wide */
+
+        /* ----- FOOTER ----- */
         .footer {
             padding: 3rem 0 1.5rem 0;
             border-top: 2px solid #f0f0f0;
@@ -319,9 +334,26 @@
 
         /* ----- RESPONSIVE ----- */
         @media (max-width: 1024px) {
+            .collage-item:nth-child(1) { width: 25%; }
+            .collage-item:nth-child(2) { width: 35%; }
+            .collage-item:nth-child(3) { width: 28%; }
+            .collage-item:nth-child(4) { width: 40%; }
+            .collage-item:nth-child(5) { width: 22%; }
+            .collage-item:nth-child(6) { width: 38%; }
+            .collage-item:nth-child(7) { width: 26%; }
+            .collage-item:nth-child(8) { width: 36%; }
+            .collage-item:nth-child(9) { width: 30%; }
+            .collage-item:nth-child(10) { width: 34%; }
+            .collage-item:nth-child(11) { width: 24%; }
+            .collage-item:nth-child(12) { width: 40%; }
+            .collage-item:nth-child(13) { width: 28%; }
+            .collage-item:nth-child(14) { width: 32%; }
+            .collage-item:nth-child(15) { width: 26%; }
+            .collage-item:nth-child(16) { width: 38%; }
+
             .collage-grid {
-                columns: 3 200px;
-                column-gap: 0.6rem;
+                gap: 0.6rem;
+                margin: 2rem 1rem 3rem 1rem;
             }
         }
 
@@ -344,9 +376,26 @@
             }
 
             .collage-grid {
-                columns: 2 160px;
-                column-gap: 0.5rem;
+                gap: 0.5rem;
+                margin: 2rem 0.8rem 3rem 0.8rem;
             }
+
+            .collage-item:nth-child(1) { width: 35%; }
+            .collage-item:nth-child(2) { width: 55%; }
+            .collage-item:nth-child(3) { width: 40%; }
+            .collage-item:nth-child(4) { width: 60%; }
+            .collage-item:nth-child(5) { width: 30%; }
+            .collage-item:nth-child(6) { width: 58%; }
+            .collage-item:nth-child(7) { width: 38%; }
+            .collage-item:nth-child(8) { width: 52%; }
+            .collage-item:nth-child(9) { width: 42%; }
+            .collage-item:nth-child(10) { width: 50%; }
+            .collage-item:nth-child(11) { width: 32%; }
+            .collage-item:nth-child(12) { width: 56%; }
+            .collage-item:nth-child(13) { width: 36%; }
+            .collage-item:nth-child(14) { width: 48%; }
+            .collage-item:nth-child(15) { width: 34%; }
+            .collage-item:nth-child(16) { width: 54%; }
 
             .section-title {
                 font-size: 1.8rem;
@@ -357,15 +406,36 @@
             }
 
             .collage-item .project-description {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
+            }
+
+            .collage-item .project-link {
+                font-size: 0.6rem;
             }
         }
 
         @media (max-width: 480px) {
             .collage-grid {
-                columns: 1 140px;
-                column-gap: 0.4rem;
+                gap: 0.4rem;
+                margin: 1.5rem 0.5rem 2rem 0.5rem;
             }
+
+            .collage-item:nth-child(1) { width: 48%; }
+            .collage-item:nth-child(2) { width: 48%; }
+            .collage-item:nth-child(3) { width: 48%; }
+            .collage-item:nth-child(4) { width: 48%; }
+            .collage-item:nth-child(5) { width: 48%; }
+            .collage-item:nth-child(6) { width: 48%; }
+            .collage-item:nth-child(7) { width: 48%; }
+            .collage-item:nth-child(8) { width: 48%; }
+            .collage-item:nth-child(9) { width: 48%; }
+            .collage-item:nth-child(10) { width: 48%; }
+            .collage-item:nth-child(11) { width: 48%; }
+            .collage-item:nth-child(12) { width: 48%; }
+            .collage-item:nth-child(13) { width: 48%; }
+            .collage-item:nth-child(14) { width: 48%; }
+            .collage-item:nth-child(15) { width: 48%; }
+            .collage-item:nth-child(16) { width: 48%; }
 
             .nav-right {
                 font-size: 0.8rem;
@@ -379,7 +449,7 @@
     <!-- STAR CURSOR -->
     <div id="star-cursor">✧</div>
 
-    <!-- NAVIGATION (inside container) -->
+    <!-- NAVIGATION -->
     <div class="container">
         <nav class="navbar">
             <div class="nav-left">
@@ -399,12 +469,15 @@
                 <a href="index-en.html" class="lang-btn">EN</a>
             </div>
         </nav>
+
+        <!-- SECTION TITLE -->
+        <h2 class="section-title">archivo ᢉ𐭩⋆˚࿔</h2>
     </div>
 
-    <!-- FULL-WIDTH ARCHIVO (COLLAGE) - NO MARGINS -->
+    <!-- TRULY RANDOM COLLAGE - NO COLUMNS -->
     <div class="collage-grid">
 
-        <!-- PROJECT 1 (very tall) -->
+        <!-- PROJECT 1 (super tall, narrow) -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -414,7 +487,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 2 (very wide) -->
+        <!-- PROJECT 2 (super wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -423,7 +496,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 3 (tall) -->
+        <!-- PROJECT 3 (very tall) -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -432,7 +505,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 4 (wide) -->
+        <!-- PROJECT 4 (very wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -441,7 +514,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 5 (extremely tall) -->
+        <!-- PROJECT 5 (extremely tall, narrow) -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -522,7 +595,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 14 (slightly wide) -->
+        <!-- PROJECT 14 (very wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -551,7 +624,7 @@
 
     </div>
 
-    <!-- FOOTER (inside container) -->
+    <!-- FOOTER -->
     <div class="container">
         <footer class="footer">
             <div class="footer-links">
