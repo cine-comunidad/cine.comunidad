@@ -39,7 +39,7 @@
 
         /* ----- CONTAINER ----- */
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
@@ -175,33 +175,35 @@
             text-transform: lowercase;
         }
 
-        /* ----- COLLAGE GRID (NEW STYLE) ----- */
+        /* ----- MASONRY / COLLAGE GRID (RANDOM SIZES) ----- */
         .collage-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2.5rem;
+            columns: 3 280px;
+            column-gap: 1.5rem;
             margin: 2rem 0 3rem 0;
         }
 
         .collage-item {
-            display: flex;
-            flex-direction: column;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            width: 100%;
             text-decoration: none;
             color: inherit;
+            break-inside: avoid;
+            page-break-inside: avoid;
             transition: transform 0.3s ease;
+            position: relative;
         }
 
         .collage-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
         .collage-item .project-image {
             width: 100%;
-            aspect-ratio: 4 / 3;
             background: #f0ebe6;
             border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -209,6 +211,20 @@
             color: #ccc;
             position: relative;
         }
+
+        /* RANDOM ASPECT RATIOS FOR EACH ITEM */
+        .collage-item:nth-child(1) .project-image { aspect-ratio: 4 / 5; }
+        .collage-item:nth-child(2) .project-image { aspect-ratio: 3 / 4; }
+        .collage-item:nth-child(3) .project-image { aspect-ratio: 5 / 4; }
+        .collage-item:nth-child(4) .project-image { aspect-ratio: 4 / 6; }
+        .collage-item:nth-child(5) .project-image { aspect-ratio: 6 / 4; }
+        .collage-item:nth-child(6) .project-image { aspect-ratio: 3 / 5; }
+        .collage-item:nth-child(7) .project-image { aspect-ratio: 5 / 6; }
+        .collage-item:nth-child(8) .project-image { aspect-ratio: 2 / 3; }
+        .collage-item:nth-child(9) .project-image { aspect-ratio: 4 / 4; }
+        .collage-item:nth-child(10) .project-image { aspect-ratio: 6 / 5; }
+        .collage-item:nth-child(11) .project-image { aspect-ratio: 3 / 6; }
+        .collage-item:nth-child(12) .project-image { aspect-ratio: 5 / 3; }
 
         .collage-item .project-image img {
             width: 100%;
@@ -223,31 +239,30 @@
         }
 
         .collage-item .project-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             font-family: 'Courier Prime', monospace;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.1rem;
             line-height: 1.3;
             color: #1a1a1a;
         }
 
         .collage-item .project-description {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
-            line-height: 1.5;
+            line-height: 1.4;
             font-family: 'Courier Prime', monospace;
         }
 
         .collage-item .project-link {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #6698f8;
             text-decoration: none;
             font-weight: 500;
-            margin-top: 0.4rem;
+            margin-top: 0.2rem;
             border-bottom: 1px solid transparent;
             transition: border-color 0.3s ease;
             display: inline-block;
-            align-self: flex-start;
         }
 
         .collage-item .project-link:hover {
@@ -320,8 +335,8 @@
             }
 
             .collage-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
+                columns: 2 200px;
+                column-gap: 1rem;
             }
 
             .section-title {
@@ -331,11 +346,15 @@
             .logo img {
                 max-height: 60px;
             }
+
+            .collage-item .project-title {
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 480px) {
             .collage-grid {
-                grid-template-columns: 1fr;
+                columns: 1 180px;
             }
 
             .nav-right {
@@ -372,69 +391,129 @@
             </div>
         </nav>
 
-        <!-- ARCHIVO (COLLAGE GRID) -->
+        <!-- ARCHIVO (MASONRY COLLAGE) -->
         <section>
-            <h2 class="section-title">archivo <span class="accent-dot">ᢉ𐭩⋆˚࿔</span></h2>
+            <h2 class="section-title">archivo <span class="accent-dot">·</span></h2>
             <div class="collage-grid">
 
-                <!-- PROJECT 1 -->
+                <!-- PROJECT 1 (tall) -->
                 <a href="#" class="collage-item">
                     <div class="project-image">
                         <span class="placeholder-icon">🎬</span>
-                        <!-- REPLACE WITH <img src="tu-imagen1.jpg" alt="Título del proyecto"> -->
+                        <!-- REPLACE WITH <img src="tu-imagen1.jpg" alt="Título"> -->
                     </div>
                     <div class="project-title">Título del proyecto</div>
-                    <div class="project-description">Breve descripción del proyecto. Una línea o dos.</div>
+                    <div class="project-description">Breve descripción.</div>
                     <span class="project-link">ver más →</span>
                 </a>
 
-                <!-- PROJECT 2 -->
+                <!-- PROJECT 2 (wide) -->
                 <a href="#" class="collage-item">
                     <div class="project-image">
                         <span class="placeholder-icon">🎞️</span>
                     </div>
                     <div class="project-title">Título del proyecto</div>
-                    <div class="project-description">Breve descripción del proyecto. Una línea o dos.</div>
+                    <div class="project-description">Breve descripción.</div>
                     <span class="project-link">ver más →</span>
                 </a>
 
-                <!-- PROJECT 3 -->
+                <!-- PROJECT 3 (square-ish) -->
                 <a href="#" class="collage-item">
                     <div class="project-image">
                         <span class="placeholder-icon">📽️</span>
                     </div>
                     <div class="project-title">Título del proyecto</div>
-                    <div class="project-description">Breve descripción del proyecto. Una línea o dos.</div>
+                    <div class="project-description">Breve descripción.</div>
                     <span class="project-link">ver más →</span>
                 </a>
 
-                <!-- PROJECT 4 -->
+                <!-- PROJECT 4 (tall) -->
                 <a href="#" class="collage-item">
                     <div class="project-image">
                         <span class="placeholder-icon">✧</span>
                     </div>
                     <div class="project-title">Título del proyecto</div>
-                    <div class="project-description">Breve descripción del proyecto. Una línea o dos.</div>
+                    <div class="project-description">Breve descripción.</div>
                     <span class="project-link">ver más →</span>
                 </a>
 
-                <!-- PROJECT 5 -->
+                <!-- PROJECT 5 (very wide) -->
                 <a href="#" class="collage-item">
                     <div class="project-image">
                         <span class="placeholder-icon">🎥</span>
                     </div>
                     <div class="project-title">Título del proyecto</div>
-                    <div class="project-description">Breve descripción del proyecto. Una línea o dos.</div>
+                    <div class="project-description">Breve descripción.</div>
                     <span class="project-link">ver más →</span>
                 </a>
 
-                <!-- PROJECT 6 -->
+                <!-- PROJECT 6 (tall) -->
                 <a href="#" class="collage-item">
                     <div class="project-image">
                         <span class="placeholder-icon">🎞️</span>
                     </div>
                     <div class="project-title">Título del proyecto</div>
-                    <div class="project-description">Breve descripción del proyecto. Una línea o dos.</div>
+                    <div class="project-description">Breve descripción.</div>
+                    <span class="project-link">ver más →</span>
+                </a>
+
+                <!-- PROJECT 7 (wide) -->
+                <a href="#" class="collage-item">
+                    <div class="project-image">
+                        <span class="placeholder-icon">📸</span>
+                    </div>
+                    <div class="project-title">Título del proyecto</div>
+                    <div class="project-description">Breve descripción.</div>
+                    <span class="project-link">ver más →</span>
+                </a>
+
+                <!-- PROJECT 8 (tall) -->
+                <a href="#" class="collage-item">
+                    <div class="project-image">
+                        <span class="placeholder-icon">🎬</span>
+                    </div>
+                    <div class="project-title">Título del proyecto</div>
+                    <div class="project-description">Breve descripción.</div>
+                    <span class="project-link">ver más →</span>
+                </a>
+
+                <!-- PROJECT 9 (square) -->
+                <a href="#" class="collage-item">
+                    <div class="project-image">
+                        <span class="placeholder-icon">✧</span>
+                    </div>
+                    <div class="project-title">Título del proyecto</div>
+                    <div class="project-description">Breve descripción.</div>
+                    <span class="project-link">ver más →</span>
+                </a>
+
+                <!-- PROJECT 10 (wide) -->
+                <a href="#" class="collage-item">
+                    <div class="project-image">
+                        <span class="placeholder-icon">🎞️</span>
+                    </div>
+                    <div class="project-title">Título del proyecto</div>
+                    <div class="project-description">Breve descripción.</div>
+                    <span class="project-link">ver más →</span>
+                </a>
+
+                <!-- PROJECT 11 (very tall) -->
+                <a href="#" class="collage-item">
+                    <div class="project-image">
+                        <span class="placeholder-icon">📽️</span>
+                    </div>
+                    <div class="project-title">Título del proyecto</div>
+                    <div class="project-description">Breve descripción.</div>
+                    <span class="project-link">ver más →</span>
+                </a>
+
+                <!-- PROJECT 12 (wide) -->
+                <a href="#" class="collage-item">
+                    <div class="project-image">
+                        <span class="placeholder-icon">🎬</span>
+                    </div>
+                    <div class="project-title">Título del proyecto</div>
+                    <div class="project-description">Breve descripción.</div>
                     <span class="project-link">ver más →</span>
                 </a>
 
@@ -459,7 +538,7 @@
                 </a>
             </div>
             <div class="footer-copy">
-                <span class="craft-heart">✧</span> Cine Comunidad · hecho con mucho amor <span class="craft-heart">♥</span> <span class="craft-heart">✧</span>
+                <span class="craft-heart">✧</span> Cine Comunidad <span class="craft-heart">♥</span> 2026 <span class="craft-heart">✧</span>
             </div>
         </footer>
 
