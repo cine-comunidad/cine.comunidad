@@ -51,47 +51,65 @@
             flex-wrap: wrap;
             padding: 0.5rem 0 2rem 0;
             border-bottom: 2px solid #f0f0f0;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
-        .logo a {
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-left .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-left .logo a {
             display: block;
+            line-height: 0;  /* removes extra space around image */
         }
 
-        .logo img {
-            max-height: 80px;
-            width: auto;
+        .nav-left .logo img {
+            height: 60px !important;
+            width: auto !important;
+            max-width: 200px !important;
             display: block;
             transition: transform 0.3s ease;
         }
 
-        .logo img:hover {
+        .nav-left .logo img:hover {
             transform: scale(1.05);
         }
 
-        .nav-links {
+        .nav-left .home-link {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'Courier Prime', monospace;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-left .home-link:hover {
+            color: #6698f8;
+        }
+
+        .nav-right {
             display: flex;
-            gap: 1.8rem;
+            gap: 2.1rem;          /* ← change this to adjust spacing */
             align-items: center;
             flex-wrap: wrap;
             font-size: 0.95rem;
             letter-spacing: 0.02em;
         }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #1a1a1a;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        .nav-links a:hover {
+        
+        .nav-right a:hover {
             color: #6698f8;
         }
 
-        .nav-links a::after {
+        .nav-right a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -102,15 +120,15 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-right a:hover::after {
             width: 100%;
         }
 
-        .nav-links .active {
+        .nav-right .active {
             color: #6698f8;
         }
 
-        .nav-links .active::after {
+        .nav-right .active::after {
             width: 100%;
         }
 
@@ -132,24 +150,6 @@
         .lang-btn:hover {
             background: #6698f8;
             color: white;
-        }
-
-        /* ----- SECTION TITLE ----- */
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin: 1rem 0 2.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #6698f8;
-            display: inline-block;
-            font-family: 'Courier Prime', monospace;
-        }
-
-        .section-title .accent-dot {
-            color: #e7bdcd;
-            font-size: 2rem;
-            margin-left: 0.3rem;
         }
 
         /* ----- TEXTOS GRID ----- */
@@ -333,22 +333,27 @@
     <div class="container">
 
         <!-- NAVIGATION -->
+        <div class="container">
         <nav class="navbar">
-            <div class="logo">
-                <a href="index.html">
-                    <!-- REPLACE "logo-placeholder.png" WITH YOUR ACTUAL LOGO FILENAME -->
-                    <img src="logo.png" alt="Cine Comunidad">
-                </a>
+            <div class="nav-left">
+                <div class="logo">
+                    <a href="index.html">
+                        <!-- REPLACE "logo-placeholder.png" WITH YOUR ACTUAL LOGO FILENAME -->
+                        <img src="logo.png" alt="Cine Comunidad">
+                    </a>
+                </div>
+                <a href="index.html" class="home-link">⋆˚࿔ inicio</a>
             </div>
-            <div class="nav-links">
-                <a href="archivo.html">Archivo</a>
-                <a href="eventos.html">Próximos Eventos</a>
-                <a href="textos.html" class="active">Textos</a>
-                <a href="nosotras.html">Nosotras</a>
+            <div class="nav-right">
+                <a href="archivo.html">࿔ archivo</a>
+                <a href="eventos.html">࿔ próximos eventos</a>
+                <a href="textos.html" class="active">࿔ textos</a>
+                <a href="nosotras.html">࿔ nosotras</a>
                 <a href="index-en.html" class="lang-btn">EN</a>
             </div>
         </nav>
-
+    </div>
+        
         <!-- TEXTOS -->
         <section>
             <h2 class="section-title">Textos <span class="accent-dot">·</span></h2>
