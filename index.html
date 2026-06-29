@@ -169,6 +169,17 @@
             color: white;
         }
 
+        .cianotipia {
+            filter: 
+                grayscale(100%) 
+                sepia(100%) 
+                saturate(300%) 
+                hue-rotate(170deg) 
+                brightness(1.2) 
+                contrast(1.4);
+            mix-blend-mode: multiply;
+        }
+        
         /* ----- HERO TEXT ----- */
         .hero {
             padding: 2rem 0 4rem 0;
@@ -339,7 +350,7 @@
     <!-- FULL-WIDTH HERO IMAGE (outside container) -->
     <div class="hero-image-full">
         <!-- REPLACE "tu-imagen.jpg" WITH YOUR ACTUAL IMAGE FILENAME -->
-        <img src="prueba.jpeg" alt="Cine Comunidad">
+        <img src="portada2.png" alt="Cine Comunidad" class="cianotipia">
     </div>
 
     <!-- REST OF CONTENT (inside container) -->
