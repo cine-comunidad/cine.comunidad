@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine Comunidad · Archivo</title>
-    <!-- FAVICON – STAR ICON -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✧</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
@@ -175,42 +174,59 @@
             text-transform: lowercase;
         }
 
-        /* ----- TRULY RANDOM FLOATING COLLAGE (NO CARDS) ----- */
+        /* ----- MASONRY COLLAGE (TRUE COLLAGE) ----- */
         .collage-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 1.2rem;
-            margin: 2rem 1.5rem 3rem 1.5rem;
-            padding: 0;
-            width: auto;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            column-count: 4;
+            column-gap: 1rem;
         }
 
         .collage-item {
-            display: block;
+            display: inline-block;
+            margin-bottom: 1rem;
+            width: 100%;
             text-decoration: none;
             color: inherit;
+            break-inside: avoid;
+            page-break-inside: avoid;
             transition: transform 0.3s ease;
-            position: relative;
-            flex-shrink: 0;
-            /* NO background, NO border, NO padding */
         }
 
         .collage-item:hover {
-            transform: translateY(-4px) scale(1.01);
+            transform: translateY(-4px);
         }
 
         .collage-item .project-image {
             width: 100%;
-            background: #f0ebe6;  /* light gray background only while loading */
+            background: #f0ebe6;
+            border-radius: 4px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #ccc;
             position: relative;
-            border-radius: 3px;  /* subtle rounded corners on images */
         }
+
+        /* ----- RANDOM HEIGHTS (exaggerated) ----- */
+        .collage-item:nth-child(1) .project-image { aspect-ratio: 3 / 8; }
+        .collage-item:nth-child(2) .project-image { aspect-ratio: 8 / 3; }
+        .collage-item:nth-child(3) .project-image { aspect-ratio: 4 / 7; }
+        .collage-item:nth-child(4) .project-image { aspect-ratio: 7 / 4; }
+        .collage-item:nth-child(5) .project-image { aspect-ratio: 2 / 6; }
+        .collage-item:nth-child(6) .project-image { aspect-ratio: 6 / 2; }
+        .collage-item:nth-child(7) .project-image { aspect-ratio: 5 / 9; }
+        .collage-item:nth-child(8) .project-image { aspect-ratio: 9 / 5; }
+        .collage-item:nth-child(9) .project-image { aspect-ratio: 3 / 5; }
+        .collage-item:nth-child(10) .project-image { aspect-ratio: 5 / 3; }
+        .collage-item:nth-child(11) .project-image { aspect-ratio: 2 / 7; }
+        .collage-item:nth-child(12) .project-image { aspect-ratio: 7 / 2; }
+        .collage-item:nth-child(13) .project-image { aspect-ratio: 4 / 9; }
+        .collage-item:nth-child(14) .project-image { aspect-ratio: 9 / 4; }
+        .collage-item:nth-child(15) .project-image { aspect-ratio: 5 / 8; }
+        .collage-item:nth-child(16) .project-image { aspect-ratio: 8 / 5; }
 
         .collage-item .project-image img {
             width: 100%;
@@ -230,7 +246,6 @@
             line-height: 1.3;
             font-family: 'Courier Prime', monospace;
             padding: 0.3rem 0.1rem 0;
-            /* NO background, NO padding-box */
         }
 
         .collage-item .project-link {
@@ -247,43 +262,6 @@
         .collage-item .project-link:hover {
             border-bottom-color: #6698f8;
         }
-
-        /* ----- EACH ITEM HAS A RANDOM SIZE AND POSITION ----- */
-        /* WIDTHS */
-        .collage-item:nth-child(1) { width: 18%; }
-        .collage-item:nth-child(2) { width: 28%; }
-        .collage-item:nth-child(3) { width: 22%; }
-        .collage-item:nth-child(4) { width: 32%; }
-        .collage-item:nth-child(5) { width: 15%; }
-        .collage-item:nth-child(6) { width: 35%; }
-        .collage-item:nth-child(7) { width: 20%; }
-        .collage-item:nth-child(8) { width: 30%; }
-        .collage-item:nth-child(9) { width: 25%; }
-        .collage-item:nth-child(10) { width: 28%; }
-        .collage-item:nth-child(11) { width: 16%; }
-        .collage-item:nth-child(12) { width: 32%; }
-        .collage-item:nth-child(13) { width: 22%; }
-        .collage-item:nth-child(14) { width: 26%; }
-        .collage-item:nth-child(15) { width: 19%; }
-        .collage-item:nth-child(16) { width: 30%; }
-
-        /* HEIGHTS (via aspect-ratio) - EXAGGERATED */
-        .collage-item:nth-child(1) .project-image { aspect-ratio: 3 / 8; }    /* super tall */
-        .collage-item:nth-child(2) .project-image { aspect-ratio: 8 / 3; }    /* super wide */
-        .collage-item:nth-child(3) .project-image { aspect-ratio: 4 / 7; }    /* very tall */
-        .collage-item:nth-child(4) .project-image { aspect-ratio: 8 / 5; }    /*  wide */
-        .collage-item:nth-child(5) .project-image { aspect-ratio: 2 / 6; }    /* extremely tall */
-        .collage-item:nth-child(6) .project-image { aspect-ratio: 6 / 2; }    /* extremely wide */
-        .collage-item:nth-child(7) .project-image { aspect-ratio: 5 / 9; }    /* very tall */
-        .collage-item:nth-child(8) .project-image { aspect-ratio: 9 / 5; }    /* very wide */
-        .collage-item:nth-child(9) .project-image { aspect-ratio: 3 / 5; }    /* tall */
-        .collage-item:nth-child(10) .project-image { aspect-ratio: 5 / 3; }   /* wide */
-        .collage-item:nth-child(11) .project-image { aspect-ratio: 2 / 7; }   /* extremely tall */
-        .collage-item:nth-child(12) .project-image { aspect-ratio: 7 / 2; }   /* extremely wide */
-        .collage-item:nth-child(13) .project-image { aspect-ratio: 4 / 9; }   /* very tall */
-        .collage-item:nth-child(14) .project-image { aspect-ratio: 9 / 4; }   /* very wide */
-        .collage-item:nth-child(15) .project-image { aspect-ratio: 5 / 8; }   /* tall */
-        .collage-item:nth-child(16) .project-image { aspect-ratio: 8 / 5; }   /* wide */
 
         /* ----- FOOTER ----- */
         .footer {
@@ -333,26 +311,10 @@
 
         /* ----- RESPONSIVE ----- */
         @media (max-width: 1024px) {
-            .collage-item:nth-child(1) { width: 25%; }
-            .collage-item:nth-child(2) { width: 35%; }
-            .collage-item:nth-child(3) { width: 28%; }
-            .collage-item:nth-child(4) { width: 40%; }
-            .collage-item:nth-child(5) { width: 22%; }
-            .collage-item:nth-child(6) { width: 38%; }
-            .collage-item:nth-child(7) { width: 26%; }
-            .collage-item:nth-child(8) { width: 36%; }
-            .collage-item:nth-child(9) { width: 30%; }
-            .collage-item:nth-child(10) { width: 34%; }
-            .collage-item:nth-child(11) { width: 24%; }
-            .collage-item:nth-child(12) { width: 40%; }
-            .collage-item:nth-child(13) { width: 28%; }
-            .collage-item:nth-child(14) { width: 32%; }
-            .collage-item:nth-child(15) { width: 26%; }
-            .collage-item:nth-child(16) { width: 38%; }
-
             .collage-grid {
-                gap: 0.6rem;
-                margin: 2rem 1rem 3rem 1rem;
+                column-count: 3;
+                column-gap: 0.8rem;
+                padding: 0 0.8rem;
             }
         }
 
@@ -375,26 +337,10 @@
             }
 
             .collage-grid {
-                gap: 0.5rem;
-                margin: 2rem 0.8rem 3rem 0.8rem;
+                column-count: 2;
+                column-gap: 0.6rem;
+                padding: 0 0.6rem;
             }
-
-            .collage-item:nth-child(1) { width: 35%; }
-            .collage-item:nth-child(2) { width: 55%; }
-            .collage-item:nth-child(3) { width: 40%; }
-            .collage-item:nth-child(4) { width: 60%; }
-            .collage-item:nth-child(5) { width: 30%; }
-            .collage-item:nth-child(6) { width: 58%; }
-            .collage-item:nth-child(7) { width: 38%; }
-            .collage-item:nth-child(8) { width: 52%; }
-            .collage-item:nth-child(9) { width: 42%; }
-            .collage-item:nth-child(10) { width: 50%; }
-            .collage-item:nth-child(11) { width: 32%; }
-            .collage-item:nth-child(12) { width: 56%; }
-            .collage-item:nth-child(13) { width: 36%; }
-            .collage-item:nth-child(14) { width: 48%; }
-            .collage-item:nth-child(15) { width: 34%; }
-            .collage-item:nth-child(16) { width: 54%; }
 
             .section-title {
                 font-size: 1.8rem;
@@ -415,30 +361,18 @@
 
         @media (max-width: 480px) {
             .collage-grid {
-                gap: 0.4rem;
-                margin: 1.5rem 0.5rem 2rem 0.5rem;
+                column-count: 1;
+                column-gap: 0.4rem;
+                padding: 0 0.4rem;
             }
-
-            .collage-item:nth-child(1) { width: 48%; }
-            .collage-item:nth-child(2) { width: 48%; }
-            .collage-item:nth-child(3) { width: 48%; }
-            .collage-item:nth-child(4) { width: 48%; }
-            .collage-item:nth-child(5) { width: 48%; }
-            .collage-item:nth-child(6) { width: 48%; }
-            .collage-item:nth-child(7) { width: 48%; }
-            .collage-item:nth-child(8) { width: 48%; }
-            .collage-item:nth-child(9) { width: 48%; }
-            .collage-item:nth-child(10) { width: 48%; }
-            .collage-item:nth-child(11) { width: 48%; }
-            .collage-item:nth-child(12) { width: 48%; }
-            .collage-item:nth-child(13) { width: 48%; }
-            .collage-item:nth-child(14) { width: 48%; }
-            .collage-item:nth-child(15) { width: 48%; }
-            .collage-item:nth-child(16) { width: 48%; }
 
             .nav-right {
                 font-size: 0.8rem;
                 gap: 0.8rem;
+            }
+
+            .collage-item .project-image {
+                aspect-ratio: 4 / 3 !important; /* forces a more standard ratio on mobile */
             }
         }
     </style>
@@ -454,7 +388,6 @@
             <div class="nav-left">
                 <div class="logo">
                     <a href="index.html">
-                        <!-- REPLACE WITH YOUR ACTUAL LOGO FILENAME -->
                         <img src="logo.png" alt="Cine Comunidad">
                     </a>
                 </div>
@@ -473,57 +406,10 @@
         <h2 class="section-title">archivo ᢉ𐭩⋆˚࿔</h2>
     </div>
 
-    <!-- TRULY RANDOM COLLAGE - NO COLUMNS -->
+    <!-- MASONRY COLLAGE - TRUE COLLAGE -->
     <div class="collage-grid">
 
-        <!-- PROJECT 1 (super tall, narrow) -->
-        <a href="#" class="collage-item">
-            <div class="project-image">
-                <img src="audio.jpg" alt="audio">
-                <!-- REPLACE WITH <img src="tu-imagen1.jpg" alt="Título"> -->
-            </div>
-            <div class="project-description">audio</div>
-            <span class="project-link">ver más →</span>
-        </a>
-
-        <!-- PROJECT 2 (super wide) -->
-        <a href="#" class="collage-item">
-            <div class="project-image">
-                <img src="lucrecia_portada.jpg" alt="Lucrecia portada">
-            </div>
-            <div class="project-description">serie de lecturas a viva voz del libro «Un destino común» de Lucrecia Martel, publicado por Caja Negra Editora.
-            𖤓</div>
-            <span class="project-link">ver más →</span>
-        </a>
-
-        <!-- PROJECT 3 (very tall) -->
-        <a href="#" class="collage-item">
-            <div class="project-image">
-                <img src="casa_iturriaga.jpg" alt="casa iturriaga">
-            </div>
-            <div class="project-description">proyecciones amigas</div>
-            <span class="project-link">ver más →</span>
-        </a>
-
-          <!-- PROJECT 16 (wide) -->
-        <a href="#" class="collage-item">
-            <div class="project-image">
-                <img src="movil.jpg" alt="móvil">
-            </div>
-            <div class="project-description">breve descripción</div>
-            <span class="project-link">ver más →</span>
-        </a>
-        
-        <!-- PROJECT 4 (very wide) -->
-        <a href="#" class="collage-item">
-            <div class="project-image">
-                <img src="fanzine.jpg" alt="fanzine">
-            </div>
-            <div class="project-description">fanzine</div>
-            <span class="project-link">ver más →</span>
-        </a>
-
-        <!-- PROJECT 5 (extremely tall, narrow) -->
+        <!-- PROJECT 1 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -532,7 +418,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 6 (extremely wide) -->
+        <!-- PROJECT 2 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -541,7 +427,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 7 (very tall) -->
+        <!-- PROJECT 3 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -550,7 +436,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 8 (very wide) -->
+        <!-- PROJECT 4 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -559,7 +445,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 9 (tall) -->
+        <!-- PROJECT 5 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -568,7 +454,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 10 (wide) -->
+        <!-- PROJECT 6 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -577,7 +463,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 11 (extremely tall) -->
+        <!-- PROJECT 7 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -586,7 +472,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 12 (extremely wide) -->
+        <!-- PROJECT 8 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -595,7 +481,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 13 (very tall) -->
+        <!-- PROJECT 9 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -604,7 +490,7 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 14 (very wide) -->
+        <!-- PROJECT 10 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -613,7 +499,52 @@
             <span class="project-link">ver más →</span>
         </a>
 
-        <!-- PROJECT 15 (tall) -->
+        <!-- PROJECT 11 -->
+        <a href="#" class="collage-item">
+            <div class="project-image">
+                <span class="placeholder-icon">✧</span>
+            </div>
+            <div class="project-description">breve descripción</div>
+            <span class="project-link">ver más →</span>
+        </a>
+
+        <!-- PROJECT 12 -->
+        <a href="#" class="collage-item">
+            <div class="project-image">
+                <span class="placeholder-icon">✧</span>
+            </div>
+            <div class="project-description">breve descripción</div>
+            <span class="project-link">ver más →</span>
+        </a>
+
+        <!-- PROJECT 13 -->
+        <a href="#" class="collage-item">
+            <div class="project-image">
+                <span class="placeholder-icon">✧</span>
+            </div>
+            <div class="project-description">breve descripción</div>
+            <span class="project-link">ver más →</span>
+        </a>
+
+        <!-- PROJECT 14 -->
+        <a href="#" class="collage-item">
+            <div class="project-image">
+                <span class="placeholder-icon">✧</span>
+            </div>
+            <div class="project-description">breve descripción</div>
+            <span class="project-link">ver más →</span>
+        </a>
+
+        <!-- PROJECT 15 -->
+        <a href="#" class="collage-item">
+            <div class="project-image">
+                <span class="placeholder-icon">✧</span>
+            </div>
+            <div class="project-description">breve descripción</div>
+            <span class="project-link">ver más →</span>
+        </a>
+
+        <!-- PROJECT 16 -->
         <a href="#" class="collage-item">
             <div class="project-image">
                 <span class="placeholder-icon">✧</span>
@@ -643,7 +574,7 @@
                 </a>
             </div>
             <div class="footer-copy">
-                <span class="craft-heart">✧</span> Cine Comunidad · hecho con mucho amor <span class="craft-heart">♥</span> <span class="craft-heart">✧</span>
+                <span class="craft-heart">✧</span> Cine Comunidad <span class="craft-heart">♥</span> 2026 <span class="craft-heart">✧</span>
             </div>
         </footer>
     </div>
