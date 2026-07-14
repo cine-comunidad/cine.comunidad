@@ -6,441 +6,7 @@
     <title>Cine Comunidad · Archivo</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✧</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* ----- RESET & BASE ----- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none;
-        }
-
-        body {
-            background: #ffffff;
-            font-family: 'Courier Prime', 'Courier New', monospace;
-            color: #1a1a1a;
-            line-height: 1.8;
-            padding: 2rem 0;
-        }
-
-        /* ----- STAR CURSOR ----- */
-        #star-cursor {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 1.8rem;
-            color: #6698f8;
-            opacity: 0.7;
-            transform: translate(-50%, -50%);
-            transition: transform 0.15s ease;
-            text-shadow: 0 0 15px rgba(102, 152, 248, 0.3);
-        }
-
-        /* ----- CONTAINER ----- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* ----- NAVIGATION ----- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 0.5rem 0 2rem 0;
-            border-bottom: 2px solid #f0f0f0;
-            margin-bottom: 2rem;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-left .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-left .logo a {
-            display: block;
-            line-height: 0;
-        }
-
-        .nav-left .logo img {
-            height: 60px !important;
-            width: auto !important;
-            max-width: 200px !important;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-left .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-left .home-link {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-family: 'Courier Prime', monospace;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-left .home-link:hover {
-            color: #6698f8;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 2.8rem;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-right a {
-            text-decoration: none;
-            color: #1a1a1a;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        .nav-right a:hover {
-            color: #6698f8;
-        }
-
-        .nav-right a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #6698f8;
-            transition: width 0.3s ease;
-        }
-
-        .nav-right a:hover::after {
-            width: 100%;
-        }
-
-        .nav-right .active {
-            color: #6698f8;
-        }
-
-        .nav-right .active::after {
-            width: 100%;
-        }
-
-        .lang-btn {
-            background: none;
-            border: 1.5px solid #6698f8;
-            color: #6698f8;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-family: 'Courier Prime', monospace;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-        }
-
-        .lang-btn:hover {
-            background: #6698f8;
-            color: white;
-        }
-
-        /* ----- SECTION TITLE ----- */
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin: 1rem 0 2.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #6698f8;
-            display: inline-block;
-            font-family: 'Courier Prime', monospace;
-            text-transform: lowercase;
-        }
-
-        /* ----- FULL-WIDTH COLLAGE (NO CARDS, NO RIGHT GAP) ----- */
-        .collage-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 0.8rem;
-            margin: 2rem 0 3rem 0;
-            padding: 0 1.5rem;
-            width: 100%;
-        }
-
-        .collage-item {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s ease;
-            position: relative;
-            flex: 1 0 auto; /* allows items to grow and fill space */
-        }
-
-        .collage-item:hover {
-            transform: translateY(-4px) scale(1.01);
-        }
-
-        .collage-item .project-image {
-            width: 100%;
-            background: #f0ebe6;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ccc;
-            position: relative;
-            border-radius: 3px;
-        }
-
-        .collage-item .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .collage-item .project-image .placeholder-icon {
-            font-size: 2.5rem;
-            opacity: 0.3;
-        }
-
-        .collage-item .project-description {
-            font-size: 0.75rem;
-            color: #555;
-            line-height: 1.3;
-            font-family: 'Courier Prime', monospace;
-            padding: 0.3rem 0.1rem 0;
-        }
-
-        .collage-item .project-link {
-            font-size: 0.7rem;
-            color: #6698f8;
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
-            display: inline-block;
-            padding: 0 0.1rem;
-        }
-
-        .collage-item .project-link:hover {
-            border-bottom-color: #6698f8;
-        }
-
-        /* ----- EACH ITEM HAS A RANDOM SIZE (FULL WIDTH) ----- */
-        .collage-item:nth-child(1) { flex: 1 0 18%; min-width: 140px; }
-        .collage-item:nth-child(2) { flex: 1 0 28%; min-width: 160px; }
-        .collage-item:nth-child(3) { flex: 1 0 22%; min-width: 150px; }
-        .collage-item:nth-child(4) { flex: 1 0 32%; min-width: 180px; }
-        .collage-item:nth-child(5) { flex: 1 0 15%; min-width: 120px; }
-        .collage-item:nth-child(6) { flex: 1 0 35%; min-width: 190px; }
-        .collage-item:nth-child(7) { flex: 1 0 20%; min-width: 140px; }
-        .collage-item:nth-child(8) { flex: 1 0 30%; min-width: 170px; }
-        .collage-item:nth-child(9) { flex: 1 0 25%; min-width: 150px; }
-        .collage-item:nth-child(10) { flex: 1 0 28%; min-width: 160px; }
-        .collage-item:nth-child(11) { flex: 1 0 16%; min-width: 130px; }
-        .collage-item:nth-child(12) { flex: 1 0 32%; min-width: 180px; }
-        .collage-item:nth-child(13) { flex: 1 0 22%; min-width: 150px; }
-        .collage-item:nth-child(14) { flex: 1 0 26%; min-width: 160px; }
-        .collage-item:nth-child(15) { flex: 1 0 19%; min-width: 140px; }
-        .collage-item:nth-child(16) { flex: 1 0 30%; min-width: 170px; }
-
-        /* HEIGHTS (via aspect-ratio) - MORE SQUARE & HORIZONTAL */
-        .collage-item:nth-child(1) .project-image { aspect-ratio: 4 / 4; }
-        .collage-item:nth-child(2) .project-image { aspect-ratio: 6 / 4; }
-        .collage-item:nth-child(3) .project-image { aspect-ratio: 5 / 4; }
-        .collage-item:nth-child(4) .project-image { aspect-ratio: 7 / 4; }
-        .collage-item:nth-child(5) .project-image { aspect-ratio: 3 / 4; }
-        .collage-item:nth-child(6) .project-image { aspect-ratio: 5 / 5; }
-        .collage-item:nth-child(7) .project-image { aspect-ratio: 4 / 3; }
-        .collage-item:nth-child(8) .project-image { aspect-ratio: 8 / 4; }
-        .collage-item:nth-child(9) .project-image { aspect-ratio: 4 / 5; }
-        .collage-item:nth-child(10) .project-image { aspect-ratio: 6 / 5; }
-        .collage-item:nth-child(11) .project-image { aspect-ratio: 5 / 6; }
-        .collage-item:nth-child(12) .project-image { aspect-ratio: 9 / 4; }
-        .collage-item:nth-child(13) .project-image { aspect-ratio: 3 / 3; }
-        .collage-item:nth-child(14) .project-image { aspect-ratio: 7 / 5; }
-        .collage-item:nth-child(15) .project-image { aspect-ratio: 5 / 7; }
-        .collage-item:nth-child(16) .project-image { aspect-ratio: 6 / 6; }
-
-        /* ----- FOOTER ----- */
-        .footer {
-            padding: 3rem 0 1.5rem 0;
-            border-top: 2px solid #f0f0f0;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a {
-            color: #1a1a1a;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-links a:hover {
-            color: #6698f8;
-        }
-
-        .footer-links a .icon {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-        }
-
-        .footer-copy {
-            font-size: 0.85rem;
-            color: #999;
-            margin-top: 1rem;
-        }
-
-        .footer-copy .craft-heart {
-            color: #e7bdcd;
-        }
-
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 1024px) {
-            .collage-grid {
-                gap: 0.6rem;
-                padding: 0 1rem;
-            }
-
-            .collage-item:nth-child(1) { flex: 1 0 22%; min-width: 120px; }
-            .collage-item:nth-child(2) { flex: 1 0 32%; min-width: 140px; }
-            .collage-item:nth-child(3) { flex: 1 0 26%; min-width: 130px; }
-            .collage-item:nth-child(4) { flex: 1 0 38%; min-width: 160px; }
-            .collage-item:nth-child(5) { flex: 1 0 18%; min-width: 100px; }
-            .collage-item:nth-child(6) { flex: 1 0 40%; min-width: 170px; }
-            .collage-item:nth-child(7) { flex: 1 0 24%; min-width: 120px; }
-            .collage-item:nth-child(8) { flex: 1 0 36%; min-width: 150px; }
-            .collage-item:nth-child(9) { flex: 1 0 28%; min-width: 130px; }
-            .collage-item:nth-child(10) { flex: 1 0 34%; min-width: 140px; }
-            .collage-item:nth-child(11) { flex: 1 0 20%; min-width: 110px; }
-            .collage-item:nth-child(12) { flex: 1 0 42%; min-width: 180px; }
-            .collage-item:nth-child(13) { flex: 1 0 24%; min-width: 120px; }
-            .collage-item:nth-child(14) { flex: 1 0 30%; min-width: 140px; }
-            .collage-item:nth-child(15) { flex: 1 0 22%; min-width: 120px; }
-            .collage-item:nth-child(16) { flex: 1 0 36%; min-width: 150px; }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem 0;
-            }
-
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .nav-right {
-                gap: 1.2rem;
-                font-size: 0.85rem;
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .collage-grid {
-                gap: 0.5rem;
-                padding: 0 0.8rem;
-                margin: 1.5rem 0 2.5rem 0;
-            }
-
-            .collage-item:nth-child(1) { flex: 1 0 40%; min-width: 100px; }
-            .collage-item:nth-child(2) { flex: 1 0 55%; min-width: 120px; }
-            .collage-item:nth-child(3) { flex: 1 0 45%; min-width: 110px; }
-            .collage-item:nth-child(4) { flex: 1 0 60%; min-width: 130px; }
-            .collage-item:nth-child(5) { flex: 1 0 35%; min-width: 90px; }
-            .collage-item:nth-child(6) { flex: 1 0 58%; min-width: 130px; }
-            .collage-item:nth-child(7) { flex: 1 0 42%; min-width: 100px; }
-            .collage-item:nth-child(8) { flex: 1 0 52%; min-width: 120px; }
-            .collage-item:nth-child(9) { flex: 1 0 44%; min-width: 110px; }
-            .collage-item:nth-child(10) { flex: 1 0 50%; min-width: 120px; }
-            .collage-item:nth-child(11) { flex: 1 0 38%; min-width: 95px; }
-            .collage-item:nth-child(12) { flex: 1 0 62%; min-width: 140px; }
-            .collage-item:nth-child(13) { flex: 1 0 40%; min-width: 100px; }
-            .collage-item:nth-child(14) { flex: 1 0 48%; min-width: 110px; }
-            .collage-item:nth-child(15) { flex: 1 0 36%; min-width: 90px; }
-            .collage-item:nth-child(16) { flex: 1 0 54%; min-width: 120px; }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .logo img {
-                max-height: 60px;
-            }
-
-            .collage-item .project-description {
-                font-size: 0.65rem;
-            }
-
-            .collage-item .project-link {
-                font-size: 0.6rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .collage-grid {
-                gap: 0.4rem;
-                padding: 0 0.5rem;
-            }
-
-            .collage-item:nth-child(1) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(2) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(3) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(4) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(5) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(6) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(7) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(8) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(9) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(10) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(11) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(12) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(13) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(14) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(15) { flex: 1 0 48%; min-width: 80px; }
-            .collage-item:nth-child(16) { flex: 1 0 48%; min-width: 80px; }
-
-            .collage-item .project-image { aspect-ratio: 4 / 3 !important; }
-
-            .nav-right {
-                font-size: 0.8rem;
-                gap: 0.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -453,7 +19,7 @@
             <div class="nav-left">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="logo.png" alt="Cine Comunidad">
+                        <img src="img/logo.png" alt="Cine Comunidad">
                     </a>
                 </div>
                 <a href="index.html" class="home-link">⋆˚࿔ inicio</a>
@@ -463,7 +29,8 @@
                 <a href="eventos.html">࿔ próximos eventos</a>
                 <a href="textos.html">࿔ textos</a>
                 <a href="nosotras.html">࿔ nosotras</a>
-                <a href="index-en.html" class="lang-btn">EN</a>
+                <!-- LUCI HOLA, ESTA DE PLACEHOLDER EL INDEX NORMAL, CUANDO HAGAS EL INDEX-EN CAMBIALE LA REF PORFIS GRACIAS -->
+                <a href="index.html" class="lang-btn">EN</a>
             </div>
         </nav>
 
@@ -477,7 +44,7 @@
         <!-- PROJECT 1 (square) -->
         <a href="rebemol.html" class="collage-item">
             <div class="project-image">
-                <img src="audio.jpg" alt="audio">
+                <img src="img/audio.jpg" alt="audio">
             </div>
             <div class="project-description">audio</div>
             <span class="project-link">ver más →</span>
@@ -486,7 +53,7 @@
         <!-- PROJECT 2 (wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="lucrecia_portada.jpg" alt="lucrecia">
+                <img src="img/lucrecia_portada.jpg" alt="lucrecia">
             </div>
             <div class="project-description">encuentro de lecturas a viva voz del libro «Un destino común» de Lucrecia Martel, publicado por Caja Negra Editora 𖤓</div>
             <span class="project-link">ver más →</span>
@@ -495,7 +62,7 @@
         <!-- PROJECT 3 (slightly wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="casa_iturriaga.jpg" alt="Casa iturriaga">
+                <img src="img/casa_iturriaga.jpg" alt="Casa iturriaga">
             </div>
             <div class="project-description">noche de proyecciones amigas ★</div>
             <span class="project-link">ver más →</span>
@@ -504,7 +71,7 @@
         <!-- PROJECT 4 (very wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="fanzine.jpg" alt="fanzine">
+                <img src="img/fanzine.jpg" alt="fanzine">
             </div>
             <div class="project-description">fanzine</div>
             <span class="project-link">ver más →</span>
@@ -513,7 +80,7 @@
         <!-- PROJECT 5 (tall) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="MACG.jpg" alt="MACG">
+                <img src="img/MACG.jpg" alt="MACG">
             </div>
             <div class="project-description">noche de museos</div>
             <span class="project-link">ver más →</span>
@@ -522,7 +89,7 @@
         <!-- PROJECT 6 (square) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="movil.jpg" alt="movil">
+                <img src="img/movil.jpg" alt="movil">
             </div>
             <div class="project-description">móvil</div>
             <span class="project-link">ver más →</span>
@@ -531,7 +98,7 @@
         <!-- PROJECT 7 (wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="sesion.png" alt="sesion">
+                <img src="img/sesion.png" alt="sesion">
             </div>
             <div class="project-description">Casa Rafael Galván</div>
             <span class="project-link">ver más →</span>
@@ -540,7 +107,7 @@
         <!-- PROJECT 8 (extremely wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                 <img src="viva.jpg" alt="viva el cine">
+                 <img src="img/viva.jpg" alt="viva el cine">
             </div>
             <div class="project-description">tarjetas</div>
             <span class="project-link">ver más →</span>
@@ -549,7 +116,7 @@
         <!-- PROJECT 9 (tall) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="galeria.jpg" alt="galeria CC">
+                <img src="img/galeria.jpg" alt="galeria CC">
             </div>
             <div class="project-description">Galería Casa Coyoacán</div>
             <span class="project-link">ver más →</span>
@@ -558,7 +125,7 @@
         <!-- PROJECT 10 (slightly wide) -->
         <a href="#" class="collage-item">
             <div class="project-image">
-                <img src="infancias.jpg" alt="infancias">
+                <img src="img/infancias.jpg" alt="infancias">
             </div>
             <div class="project-description">proyección infantil</div>
             <span class="project-link">ver más →</span>
