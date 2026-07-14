@@ -1,384 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✧</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine Comunidad · Próximos Eventos</title>
-    <style>
-        /* ----- RESET & BASE ----- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none;
-        }
-
-        body {
-            background: #ffffff;
-            font-family: 'Courier Prime', 'Courier New', monospace;
-            color: #1a1a1a;
-            line-height: 1.7;
-            padding: 2rem 1.5rem;
-        }
-
-        /* ----- STAR CURSOR ----- */
-        #star-cursor {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 1.8rem;
-            color: #6698f8;
-            opacity: 0.7;
-            transform: translate(-50%, -50%);
-            transition: transform 0.15s ease;
-            text-shadow: 0 0 15px rgba(102, 152, 248, 0.3);
-        }
-
-        /* ----- CONTAINER ----- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* ----- NAVIGATION ----- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 0.5rem 0 2rem 0;
-            border-bottom: 2px solid #f0f0f0;
-            margin-bottom: 2rem;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-left .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-left .logo a {
-            display: block;
-            line-height: 0;  /* removes extra space around image */
-        }
-
-        .nav-left .logo img {
-            height: 60px !important;
-            width: auto !important;
-            max-width: 200px !important;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-left .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-left .home-link {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-family: 'Courier Prime', monospace;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-left .home-link:hover {
-            color: #6698f8;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 2.1rem;          /* ← change this to adjust spacing */
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-        }
-        
-        .nav-right a:hover {
-            color: #6698f8;
-        }
-
-        .nav-right a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #6698f8;
-            transition: width 0.3s ease;
-        }
-
-        .nav-right a:hover::after {
-            width: 100%;
-        }
-
-        .nav-right .active {
-            color: #6698f8;
-        }
-
-        .nav-right .active::after {
-            width: 100%;
-        }
-
-        .lang-btn {
-            background: none;
-            border: 1.5px solid #6698f8;
-            color: #6698f8;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-family: 'Courier Prime', monospace;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-        }
-
-        .lang-btn:hover {
-            background: #6698f8;
-            color: white;
-        }
-
-        /* ----- SECTION TITLE ----- */
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin: 1rem 0 2.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #6698f8;
-            display: inline-block;
-            font-family: 'Courier Prime', monospace;
-        }
-
-        .section-title .accent-dot {
-            color: #e7bdcd;
-            font-size: 2rem;
-            margin-left: 0.3rem;
-        }
-
-        /* ----- EVENTOS CONTAINER ----- */
-        .events-container {
-            background: #faf8f6;
-            border-radius: 12px;
-            padding: 4rem 2.5rem;
-            border: 1px solid #f0ebe6;
-            margin: 2rem 0 3rem 0;
-            text-align: center;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .events-container .no-events {
-            font-size: 1.4rem;
-            color: #6698f8;
-            font-family: Courier Prime', monospace;
-            letter-spacing: 0.02em;
-        }
-
-        .events-container .no-events .emoji {
-            display: block;
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ----- WHEN THERE IS AN EVENT (hidden by default) ----- */
-        .events-container .event-content {
-            display: none;
-            width: 100%;
-        }
-
-        .events-container .event-content .flyer {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            margin: 0 auto 1.5rem auto;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .events-container .event-content .flyer img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .events-container .event-content .event-description {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .events-container .event-content .event-description h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: #1a1a1a;
-            font-family: Courier Prime', monospace;
-        }
-
-        .events-container .event-content .event-description p {
-            font-size: 1.05rem;
-            color: #444;
-            line-height: 1.8;
-        }
-
-        /* ----- FOOTER ----- */
-        .footer {
-            padding: 3rem 0 1.5rem 0;
-            border-top: 2px solid #f0f0f0;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a {
-            color: #1a1a1a;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-links a:hover {
-            color: #6698f8;
-        }
-
-        .footer-links a .icon {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-        }
-
-        .footer-copy {
-            font-size: 0.85rem;
-            color: #999;
-            margin-top: 1rem;
-        }
-
-        .footer-copy .craft-heart {
-            color: #e7bdcd;
-        }
-
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.85rem;
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .logo img {
-                max-height: 60px;
-            }
-
-            .events-container {
-                padding: 2.5rem 1.5rem;
-                min-height: 300px;
-            }
-
-            .events-container .no-events {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links {
-                font-size: 0.8rem;
-                gap: 0.8rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .events-container .no-events {
-                font-size: 1rem;
-            }
-
-            .events-container .no-events .emoji {
-                font-size: 3rem;
-            }
-        }
-    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✧</text></svg>">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- STAR CURSOR -->
     <div id="star-cursor">✧</div>
 
     <div class="container">
-
-        <!-- NAVIGATION -->
-         <div class="container">
         <nav class="navbar">
             <div class="nav-left">
                 <div class="logo">
                     <a href="index.html">
-                        <!-- REPLACE "logo-placeholder.png" WITH YOUR ACTUAL LOGO FILENAME -->
-                        <img src="logo.png" alt="Cine Comunidad">
+                        <img src="img/logo.png" alt="Cine Comunidad">
                     </a>
                 </div>
                 <a href="index.html" class="home-link">⋆˚࿔ inicio</a>
             </div>
             <div class="nav-right">
                 <a href="archivo.html">࿔ archivo</a>
-                <a href="eventos.html">࿔ próximos eventos</a>
+                <a href="eventos.html" class="active">࿔ próximos eventos</a>
                 <a href="textos.html">࿔ textos</a>
                 <a href="nosotras.html">࿔ nosotras</a>
-                <a href="index-en.html" class="lang-btn">EN</a>
+                <!-- LUCI HOLA, ESTA DE PLACEHOLDER EL INDEX NORMAL, CUANDO HAGAS EL INDEX-EN CAMBIALE LA REF PORFIS GRACIAS -->
+                <a href="index.html" class="lang-btn">EN</a>
             </div>
         </nav>
-    </div>
 
-        <!-- PRÓXIMOS EVENTOS -->
         <section>
             <h2 class="section-title">próximos eventos <span class="accent-dot">⊹ ࣪ ˖ ໒꒱</span></h2>
 
             <div class="events-container">
-                <!-- NO EVENTS MESSAGE (visible by default) -->
                 <div class="no-events" id="noEventsMessage">
                     <span class="emoji">✧</span>
                     por el momento no tenemos próximos eventos unu<br>
                     esperamos anunciarlos pronto! :)
                 </div>
 
-                <!-- EVENT CONTENT (hidden by default) -->
-                <!-- TO SHOW AN EVENT: change display: none to display: block -->
                 <div class="event-content" id="eventContent" style="display: none;">
                     <div class="flyer">
-                        <!-- REPLACE "flyer-placeholder.jpg" WITH YOUR ACTUAL FLYER IMAGE -->
-                        <img src="flyer-placeholder.jpg" alt="Flyer del evento">
+                        <img src="img/flyer-placeholder.jpg" alt="Flyer del evento">
                     </div>
                     <div class="event-description">
                         <h3>Nombre del evento</h3>
@@ -386,14 +50,13 @@
                             <strong>Fecha:</strong> Día/Mes/Año<br>
                             <strong>Hora:</strong> 19:00<br>
                             <strong>Lugar:</strong> Espacio cultural<br><br>
-                            Descripción detallada del evento. Aquí puedes escribir sobre la película que se proyectará, las actividades, los invitados especiales y toda la información que quieras compartir.
+                            Descripción detallada del evento.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer class="footer">
             <div class="footer-links">
                 <a href="https://instagram.com/cine.comunidad" target="_blank">
@@ -414,10 +77,8 @@
                 <span class="craft-heart">✧</span> Cine Comunidad <span class="craft-heart">♥</span> 2026 <span class="craft-heart">✧</span>
             </div>
         </footer>
-
     </div>
 
-    <!-- STAR CURSOR SCRIPT -->
     <script>
         const star = document.getElementById('star-cursor');
         let mouseX = 0, mouseY = 0;
@@ -443,6 +104,5 @@
             document.querySelectorAll('*').forEach(el => el.style.cursor = 'auto');
         }
     </script>
-
 </body>
 </html>
